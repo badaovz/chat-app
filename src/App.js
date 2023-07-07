@@ -1,23 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import { Route, Routes } from 'react-router-dom';
+import ChatRoom from "./components/ChatRoom";
+import Login from "./components/Login";
+import NotFound from "./components/NotFound";
+import AddRoomModal from './modals/AddRoomModal'
+import InviteMemberModal from './modals/InviteMemberModal';
+import { generateKeywords }  from './firebase/services';
+
 
 function App() {
+  console.log('TEST: ', generateKeywords('dao nguyen'))
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <Routes>
+          <Route path='/login' element={<Login />} />
+          <Route path='/' element={<ChatRoom />} />
+          <Route path='*' element={<NotFound />} />
+      </Routes>
+      <AddRoomModal />
+      <InviteMemberModal />
     </div>
   );
 }
